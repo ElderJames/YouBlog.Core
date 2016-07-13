@@ -2,11 +2,9 @@
   "userSecretsId": "aspnet-YouBlog.Core.Web-8e2b3261-4ace-4c86-8767-2eee5d901a9f",
 
   "dependencies": {
-    "Microsoft.NETCore.App": {
-      "version": "1.0.0",
-      "type": "platform"
-    },
+
     "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
+    "Microsoft.AspNetCore.Authentication": "1.0.0",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
@@ -40,10 +38,14 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Pomelo.EntityFrameworkCore.MySql": "1.0.0",
+    "Pomelo.AspNetCore.Extensions": "1.0.0",
+    "Pomelo.AspNetCore.TimedJob": "1.0.0",
+    "YouBlog.Core.Data": "1.0.0-*"
   },
 
   "tools": {
@@ -61,9 +63,17 @@
   },
 
   "frameworks": {
+    "net451": {},
     "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0",
+          "type": "platform"
+        }
+      },
       "imports": [
         "dotnet5.6",
+        "dnxcore50",
         "portable-net45+win8"
       ]
     }

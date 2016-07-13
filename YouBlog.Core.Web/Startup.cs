@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using YouBlog.Core.Web.Data;
 using YouBlog.Core.Web.Models;
 using YouBlog.Core.Web.Services;
+using YouBlog.Core.Data;
 
 namespace YouBlog.Core.Web
 {
@@ -47,6 +48,10 @@ namespace YouBlog.Core.Web
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //增加Mysql支持
+            services.AddDbContext<YouDbContext>(option=>
+                option.UseMySql(Configuration.GetConnectionString("YouConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
