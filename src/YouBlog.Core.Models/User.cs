@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace YouBlog.Core.Models
 {
-    public class Class1
+    public class User
     {
-        public Class1()
+        public User()
         {
         }
     }

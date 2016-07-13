@@ -13,6 +13,7 @@ using YouBlog.Core.Web.Data;
 using YouBlog.Core.Web.Models;
 using YouBlog.Core.Web.Services;
 using YouBlog.Core.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace YouBlog.Core.Web
 {
@@ -53,15 +54,20 @@ namespace YouBlog.Core.Web
             services.AddDbContext<YouDbContext>(option=>
                 option.UseMySql(Configuration.GetConnectionString("YouConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+            });
 
             services.AddMvc();
 
             // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+            //services.AddTransient<IEmailSender, AuthMessageSender>();
+            //services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,10 +95,23 @@ namespace YouBlog.Core.Web
 
             app.UseIdentity();
 
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationScheme = "MyCookieMiddlewareInstance",
+                LoginPath = new PathString("/Account/Login"),
+                AccessDeniedPath = new PathString("/Account/Forbidden/"),
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
+            });
+
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=Home}/{action=Index}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
