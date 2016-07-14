@@ -62,8 +62,8 @@ namespace YouBlog.Core.Web
             {
                 options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
             });
-
-            services.AddMvc();
+          
+            services.AddMvc(options => { });
 
             // Add application services.
             //services.AddTransient<IEmailSender, AuthMessageSender>();

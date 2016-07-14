@@ -23,7 +23,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "YouBlog.Core.Common", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9F0CBC89-E68A-4EFA-A68E-77EA326E9517}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "YouBlog.Core.Web.Test", "YouBlog.Core.Web.Test\YouBlog.Core.Web.Test.xproj", "{A7685304-1B98-4F2E-95C2-30511FC5C122}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "YouBlog.Core.Web.Test", "test\YouBlog.Core.Web.Test\YouBlog.Core.Web.Test.xproj", "{A7685304-1B98-4F2E-95C2-30511FC5C122}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
