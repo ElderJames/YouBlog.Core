@@ -47,8 +47,8 @@ namespace YouBlog.Core.Web
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //增加Mysql支持
             services.AddDbContext<YouDbContext>(option=>
@@ -63,8 +63,9 @@ namespace YouBlog.Core.Web
                 options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
             });
           
-            services.AddMvc(options => { });
+            services.AddMvc();
 
+            
             // Add application services.
             //services.AddTransient<IEmailSender, AuthMessageSender>();
             //services.AddTransient<ISmsSender, AuthMessageSender>();
