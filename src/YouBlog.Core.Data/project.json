@@ -1,8 +1,7 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview2-final",
       "type": "build"
@@ -12,22 +11,20 @@
     "Pomelo.Data.MySql": "1.0.0",
     "Pomelo.EntityFrameworkCore.MySql": "1.0.0",
     "YouBlog.Core.Models": "1.0.0-*",
-    "YouBlog.Core.Common": "1.0.0-*"
+    "YouBlog.Core.Common": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore": "1.0.0",
+    "Microsoft.NETCore.App": "1.0.0"
   },
-
-  "frameworks": {
-    "netcoreapp1.0": {
-      "dependencies": {
-        "Microsoft.NETCore.App": {
-          "version": "1.0.0",
-          "type": "platform"
-        }
-      },
-      "imports": [
-        "dotnet5.6",
-        "dnxcore50",
-        "portable-net45+win8"
-      ]
+    "frameworks": {
+      "netcoreapp1.0": {
+        "dependencies": {
+        },
+        "imports": [
+          "dotnet5.6",
+          "dnxcore50",
+          "portable-net45+win8"
+        ]
+      }
     }
   }
-}
+

@@ -88,14 +88,14 @@ namespace YouBlog.Core.Data
             return isSave ? await SaveAsync() > 0 : true;
         }
 
-        public int UpdateRange(IEnumerable<T> entities,bool isSave=true)
+        public int UpdateRange(IEnumerable<T> entities, bool isSave = true)
         {
             entities.ToList().ForEach(entity =>
             {
                 _baseDbContext.Set<T>().Attach(entity);
                 _baseDbContext.Entry<T>(entity).State = EntityState.Modified;
             });
-            return isSave ?Save () : 0;
+            return isSave ? Save() : 0;
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace YouBlog.Core.Data
         public int DeleteRange(IEnumerable<T> entities, bool isSave = true)
         {
             _baseDbContext.Set<T>().RemoveRange(entities);
-            return isSave ? Save () : 0;
+            return isSave ? Save() : 0;
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace YouBlog.Core.Data
             // }
             catch (Exception ex)//其他错误
             {
-                throw new BaseException(ExceptionLevel.Normal,(int)DataBaseExceptionCode.数据操作执行时出错, ex.Message);
+                throw new BaseException(ExceptionLevel.Normal, (int)DataBaseExceptionCode.数据操作执行时出错, ex.Message);
             }
         }
 
@@ -209,12 +209,12 @@ namespace YouBlog.Core.Data
         /// <returns></returns>
         public T Find(int ID)
         {
-            return _baseDbContext.Set<T>().FirstOrDefault(x=>x.Id==ID);
+            return _baseDbContext.Set<T>().FirstOrDefault(x => x.Id == ID);
         }
 
         public async Task<T> FindAsync(int ID)
         {
-            return await _baseDbContext.Set<T>().FirstOrDefaultAsync(x=>x.Id==ID);
+            return await _baseDbContext.Set<T>().FirstOrDefaultAsync(x => x.Id == ID);
         }
 
         /// <summary>
@@ -292,6 +292,16 @@ namespace YouBlog.Core.Data
             }
             _tIQueryable = _tIQueryable.Skip((pageIndex - 1) * pageNumber).Take(pageNumber);
             return _tIQueryable;
+        }
+    }
+
+    public class EFRepository : IRepository
+    {
+        private DbContext _baseDbContext;
+        public IDbContext db
+        {
+            get { return _baseDbContext as IDbContext; }
+            private set { _baseDbContext = value as DbContext; }
         }
     }
 }

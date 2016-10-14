@@ -4,5 +4,8 @@ namespace YouBlog.Core.Data
 {
     public class YouDbContext:DbContext
     { 
+
+
+
     }
 }

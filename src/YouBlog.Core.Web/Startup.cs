@@ -14,13 +14,21 @@ using YouBlog.Core.Web.Models;
 using YouBlog.Core.Web.Services;
 using YouBlog.Core.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace YouBlog.Core.Web
 {
     public class Startup
     {
+        private static string _applicationPath = string.Empty;
+        private static string _contentRootPath = string.Empty;
+
         public Startup(IHostingEnvironment env)
         {
+            _applicationPath = env.WebRootPath;
+            _contentRootPath = env.ContentRootPath;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -53,6 +61,8 @@ namespace YouBlog.Core.Web
             //增加Mysql支持
             services.AddDbContext<YouDbContext>(option=>
                 option.UseMySql(Configuration.GetConnectionString("YouConnection")));
+
+      
 
             //services.AddIdentity<ApplicationUser, IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -92,9 +102,22 @@ namespace YouBlog.Core.Web
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            app.UseStaticFiles();
+            // app.UseStaticFiles();
 
-            app.UseIdentity();
+            // app.UseIdentity();
+
+            // this will serve up wwwroot
+            app.UseFileServer();
+
+            // this will serve up node_modules
+            var provider = new PhysicalFileProvider(
+                Path.Combine(_contentRootPath, "node_modules")
+            );
+            var _fileServerOptions = new FileServerOptions();
+            _fileServerOptions.RequestPath = "/node_modules";
+            _fileServerOptions.StaticFileOptions.FileProvider = provider;
+            _fileServerOptions.EnableDirectoryBrowsing = true;
+            app.UseFileServer(_fileServerOptions);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

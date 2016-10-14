@@ -1,5 +1,5 @@
 ﻿/**
- * System configuration for Angular samples
+ * System configuration for Angular 2 samples
  * Adjust as necessary for your application needs.
  */
 (function (global) {
@@ -11,7 +11,7 @@
         // map tells the System loader where to look for things
         map: {
             // our app is within the app folder
-            app: 'app',
+            app: 'lib/spa',
             // angular bundles
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
             '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -23,7 +23,9 @@
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             // other libraries
             'rxjs': 'npm:rxjs',
-            'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+            'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
+            "materialize-css": "node-modules/materialize-css",
+            "angular2-materialize": "node_modules/angular2-materialize"
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -34,9 +36,12 @@
             rxjs: {
                 defaultExtension: 'js'
             },
-            'angular-in-memory-web-api': {
+            'angular2-in-memory-web-api': {
                 main: './index.js',
                 defaultExtension: 'js'
+            },
+            "materialize-css": {
+                "main": "dist/js/materialize"
             }
         }
     });
