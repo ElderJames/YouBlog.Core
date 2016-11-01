@@ -1,4 +1,4 @@
-/// <reference path="../../typings/globals/es6-shim/index.d.ts" />
+///// <reference path="../../typings/globals/es6-shim/index.d.ts" />
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9,43 +9,55 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+//import { Component, OnInit } from '@angular/core';
+//import { Location } from '@angular/common';
+//import 'rxjs/add/operator/map';
+//import {enableProdMode} from '@angular/core';
+//enableProdMode();
+//import { MembershipService } from './core/services/membership.service';
+//import { User } from './core/domain/user';
+//@Component({
+//    selector: 'photogallery-app',
+//    templateUrl: './app/app.component.html'
+//})
+//export class AppComponent implements OnInit {
+//    constructor(public membershipService: MembershipService,
+//                public location: Location) { }
+//    ngOnInit() {
+//        this.location.go('/');
+//    }
+//    isUserLoggedIn(): boolean {
+//        return this.membershipService.isUserAuthenticated();
+//    }
+//    getUserName(): string {
+//        if (this.isUserLoggedIn()) {
+//            var _user = this.membershipService.getLoggedInUser();
+//            return _user.Username;
+//        }
+//        else
+//            return 'Account';
+//    }
+//    logout(): void {
+//        this.membershipService.logout()
+//            .subscribe(res => {
+//                localStorage.removeItem('user');
+//            },
+//            error => console.error('Error: ' + error),
+//            () => { });
+//    }
+//}
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-require('rxjs/add/operator/map');
-var core_2 = require('@angular/core');
-core_2.enableProdMode();
-var membership_service_1 = require('./core/services/membership.service');
 var AppComponent = (function () {
-    function AppComponent(membershipService, location) {
-        this.membershipService = membershipService;
-        this.location = location;
+    function AppComponent() {
+        this.title = 'Tour of Heroes';
     }
-    AppComponent.prototype.ngOnInit = function () {
-        this.location.go('/');
-    };
-    AppComponent.prototype.isUserLoggedIn = function () {
-        return this.membershipService.isUserAuthenticated();
-    };
-    AppComponent.prototype.getUserName = function () {
-        if (this.isUserLoggedIn()) {
-            var _user = this.membershipService.getLoggedInUser();
-            return _user.Username;
-        }
-        else
-            return 'Account';
-    };
-    AppComponent.prototype.logout = function () {
-        this.membershipService.logout()
-            .subscribe(function (res) {
-            localStorage.removeItem('user');
-        }, function (error) { return console.error('Error: ' + error); }, function () { });
-    };
     AppComponent = __decorate([
         core_1.Component({
-            selector: 'photogallery-app',
-            templateUrl: './app/app.component.html'
+            selector: 'my-app',
+            template: "\n  <h1>{{title}}</h1>\n  <nav>\n    <a routerLink=\"console/dashboard\" routerLinkActive=\"active\">Dashboard</a>\n    <a routerLink=\"console/heroes\" routerLinkActive=\"active\">Heroes</a>\n  </nav>\n  <router-outlet></router-outlet>\n",
+            styleUrls: ['app/app.component.css']
         }), 
-        __metadata('design:paramtypes', [membership_service_1.MembershipService, common_1.Location])
+        __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());
