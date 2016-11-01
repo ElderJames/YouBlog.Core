@@ -29,9 +29,11 @@ namespace YouBlog.Core.Web.Areas.Console.Controllers
         }
 
         [Route("app/heroes")]
-        public IActionResult HeroList()
+        public IActionResult HeroList(string name)
         {
-            return Ok(Heroes);
+            if (name == null)
+                return Ok(Heroes);
+            else return Ok(Heroes.Where(x => x.Name.Contains(name)).ToList());
         }
 
         [HttpPut]

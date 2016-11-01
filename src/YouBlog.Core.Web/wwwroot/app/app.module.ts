@@ -5,12 +5,14 @@ import { HttpModule } from '@angular/http';
 //import { RouterModule }   from '@angular/router';
 //import { MaterializeModule } from 'angular2-materialize';
 //import "materialize-css";
+import './rxjs-extensions';
+
 import { AppComponent }   from './app.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroesComponent }     from './heroes.component';
 import { HeroService }         from './hero.service';
 import { DashboardComponent } from './dashboard.component';
-
+import { HeroSearchComponent }  from './hero-search.component';
 import { AppRoutingModule }     from './app-routing.module';
 
 @NgModule({
@@ -25,7 +27,8 @@ import { AppRoutingModule }     from './app-routing.module';
         AppComponent,
         HeroDetailComponent,
         HeroesComponent,
-        DashboardComponent
+        DashboardComponent,
+        HeroSearchComponent
     ],
     providers: [HeroService],
     bootstrap: [AppComponent],
