@@ -1,27 +1,21 @@
 ﻿{
+  "webroot": "wwwroot",
   "userSecretsId": "aspnet-YouBlog.Core.Web-8e2b3261-4ace-4c86-8767-2eee5d901a9f",
+  "version": "1.0.0-*",
 
   "dependencies": {
-
     "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
     "Microsoft.AspNetCore.Authentication": "1.0.0",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
-    "Microsoft.AspNetCore.Mvc": "1.0.0",
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
-    "Microsoft.EntityFrameworkCore.SqlServer.Design": {
-      "version": "1.0.0",
-      "type": "build"
-    },
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview2-final",
       "type": "build"
@@ -43,16 +37,18 @@
       "type": "build"
     },
     "Pomelo.EntityFrameworkCore.MySql": "1.0.0",
-    "Pomelo.AspNetCore.Extensions": "1.0.0",
-    "Pomelo.AspNetCore.TimedJob": "1.0.0",
-    "YouBlog.Core.Data": "1.0.0-*"
+    "Pomelo.Data.MySql": "1.0.0",
+    "YouBlog.Core.Data": "1.0.0-*",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
+    "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.0",
+    "Microsoft.NETCore.App": "1.0.0"
   },
 
   "tools": {
-    "BundlerMinifier.Core": "2.0.238",
     "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final",
-    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
     "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final",
     "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
       "version": "1.0.0-preview2-final",
@@ -63,13 +59,9 @@
   },
 
   "frameworks": {
-    "net451": {},
     "netcoreapp1.0": {
       "dependencies": {
-        "Microsoft.NETCore.App": {
-          "version": "1.0.0",
-          "type": "platform"
-        }
+
       },
       "imports": [
         "dotnet5.6",
@@ -97,11 +89,24 @@
       "Areas/**/Views",
       "appsettings.json",
       "web.config"
+    ],
+    "exclude": [
+      "node_modules"
     ]
   },
 
   "scripts": {
     "prepublish": [ "bower install", "dotnet bundle" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  },
+
+  "runtimes": {
+    "win7-x64": {},
+    "win7-x86": {},
+    "osx.10.11-x64": {},
+    "ubuntu.14.04-x64": {},
+    "centos.7-x64": {},
+    "rhel.7.2-x64": {},
+    "debian.8-x64": {}
   }
 }
